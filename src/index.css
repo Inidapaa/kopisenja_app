@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+:root {
+  --shadow-custom: 0 1px 10px 5px rgba(0, 0, 0, 0.1), 0 1px 10px 5px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-custom {
+  box-shadow: var(--shadow-custom);
+}
+
+* {
+  font-family: 'Chonburi';
+}
+
+.primary-color {
+  color: #DCCFC0;
+}
+
+.secondary-color {
+  color: #A0937D;
+}
+
+.third-color {
+  color: #504B38;
+}
+
+.bg-primary {
+  background-color: #DCCFC0;
+}
+
+.bg-secondary {
+  background-color: #A0937D;
+}
+
+.bg-third {
+  background-color: #504B38;
+}
