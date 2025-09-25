@@ -1,9 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import Profile from './profile.jsx'
-import Menu from './home.jsx'
-import Navbar from './navbar.jsx'
+import Profile from './pages/profile.jsx'
+import Menu from './pages/home.jsx'
+import Navbar from './pages/navbar.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
