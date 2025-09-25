@@ -1,12 +1,13 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './style/index.css'
-import Profile from './components/profile.jsx'
-import Menu from './pages/home.jsx'
-import Navbar from './components/navbar.jsx'
+import {Router} from './routes/index.jsx'
+import {RouterProvider} from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Menu/>
-  </StrictMode>,
+    <RouterProvider router={Router}/>
+  </StrictMode>
 )
+
+

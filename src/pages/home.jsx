@@ -4,7 +4,7 @@ import Profile from '../components/profile.jsx'
 import Navbar from '../components/navbar.jsx'
 
 
-function Menu () {
+const Home = () => {
   return (
     <>
     <Navbar/>
@@ -54,4 +54,4 @@ function Menu () {
   )
 }
 
-export default Menu
+export default Home
