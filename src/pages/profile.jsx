@@ -1,5 +1,3 @@
-import './index.css'
-
 function Profile() {
     return (
         <div className=" w-screen flex items-center place-content-around gap-5 bg-secondary h-40">
