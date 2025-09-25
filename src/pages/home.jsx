@@ -1,10 +1,14 @@
 import {Clock, MapPin, Star} from 'lucide-react'
 import matcha1 from '../assets/matcha1.png'
+import Profile from '../components/profile.jsx'
+import Navbar from '../components/navbar.jsx'
 
 
 function Menu () {
   return (
     <>
+    <Navbar/>
+    <Profile/>
     <div className="h-screen mb-10 bg-[url('../assets/Background.jpg')] bg-cover bg-center">
       <div className="flex flex-col text-[#504B38]">
         <h1 className="font-bold text-5xl text-center mt-5">Halo, Senja's!</h1>
