@@ -1,11 +1,11 @@
 import {Clock, MapPin, Star} from 'lucide-react'
-import matcha1 from './assets/matcha1.png'
+import matcha1 from '../assets/matcha1.png'
 
 
 function Menu () {
   return (
     <>
-    <div className="h-screen mb-10 bg-[url('./assets/Background.jpg')] bg-cover bg-center">
+    <div className="h-screen mb-10 bg-[url('../assets/Background.jpg')] bg-cover bg-center">
       <div className="flex flex-col text-[#504B38]">
         <h1 className="font-bold text-5xl text-center mt-5">Halo, Senja's!</h1>
         <p className="text-[20px] m-5 font-bold">Di tiap tetes kopi ada cerita, di tiap senja ada makna. Kopi Senja hadir untuk kamu yang ingin singgah, agar hari tak sekadar lewat tanpa rasa.</p>
