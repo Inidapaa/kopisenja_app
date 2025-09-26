@@ -48,7 +48,7 @@ const Home = () => {
         </div>
       </div>
       <div className="flex justify-center items-center mt-10">
-        <Link to='/' className="bg-third h-10 w-30 rounded-2xl text-white hover:shadow-md transition">Lihat Menu</Link>
+        <Link to='/' className=" flex items-center justify-center bg-third h-10 w-30 rounded-2xl text-white hover:shadow-md transition">Lihat Menu</Link>
       </div>
     </div>
     </>
