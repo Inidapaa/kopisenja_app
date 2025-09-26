@@ -4,6 +4,12 @@
   --shadow-custom: 0 1px 10px 5px rgba(0, 0, 0, 0.1), 0 1px 10px 5px rgba(0, 0, 0, 0.06);
 }
 
+@theme {
+  --shadow-edit {
+    box-shadow: var(--shadow-custom);
+  }
+}
+
 .shadow-custom {
   box-shadow: var(--shadow-custom);
 }
