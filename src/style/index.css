@@ -5,7 +5,7 @@
 }
 
 @theme {
-  --shadow-edit {
+   --shadow-edit {
     box-shadow: var(--shadow-custom);
   }
 }
