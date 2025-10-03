@@ -119,9 +119,9 @@ const Checkout = () => {
       <h1 className="ml-7 md:text-3xl text-2xl font-bold md:text-center text-start">
         Ringkasan Pembayaran
       </h1>
-      <div className="h-90 w-full my-10 px-9 md:px-10">
+      <div className="h-100 w-screen my-10 px-9 md:px-10">
         <div className=" mx-auto flex justify-center items-center h-auto pb-10">
-          <div className="grid md:grid-cols-2 gap-10 w-5xl">
+          <div className="grid gap-10 w-5xl">
             <div className="bg-white shadow-custom rounded-3xl flex justify-between items-center h-30 p-5">
               <h1 className="text-2xl">Total Pembayaran</h1>
               <div className="flex flex-col">
@@ -132,12 +132,31 @@ const Checkout = () => {
                 </span>
               </div>
             </div>
-            <form className="bg-white shadow-custom rounded-3xl justify-between items-center h-30 p-5">
-              <div className="flex flex-col gap-3">
-                <input type="text" className=" rounded-2xl bg-gray-100 px-4" />
-                <input type="text" className=" rounded-2xl bg-gray-100 px-4" />
+            <form className="bg-white flex flex-col shadow-custom rounded-3xl justify-center items-center h-39 p-5">
+              <div className="flex flex-col gap-3 mb-2">
+                <input
+                  type="text"
+                  className="  rounded-2xl bg-gray-100 px-4"
+                  placeholder="Nama Pemesan"
+                />
+                <input
+                  type="text"
+                  className=" rounded-2xl bg-gray-100 px-4"
+                  placeholder="Nomor Meja"
+                />
+                <select
+                  name="payment"
+                  id=""
+                  className="rounded-2xl bg-gray-100 px-4 text-sm py-1 md:w-250"
+                >
+                  <option value="">Pilih Metode Pembayaran</option>
+                  <option value="tunai">Tunai</option>
+                  <option value="qris">QRIS</option>
+                </select>
               </div>
-              <button>Bayar Sekarang</button>
+              <button className="bg-green-300 w-50 h-5  md:w-100  md:h-10 hover:bg-green-600 transition flex items-center justify-center rounded-3xl ">
+                Bayar Sekarang
+              </button>
             </form>
           </div>
         </div>
