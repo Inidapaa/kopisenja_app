@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --shadow-custom: 0 1px 10px 5px rgba(0, 0, 0, 0.1), 0 1px 10px 5px rgba(0, 0, 0, 0.06);
+  --shadow-custom: 0 1px 10px 5px rgba(0, 0, 0, 0.1),
+    0 1px 10px 5px rgba(0, 0, 0, 0.06);
 }
 
 @theme {
-   --shadow-edit {
+  --shadow-edit {
     box-shadow: var(--shadow-custom);
   }
 }
@@ -15,29 +16,29 @@
 }
 
 * {
-  font-family: 'Chonburi';
+  font-family: "Chonburi";
 }
 
 .primary-color {
-  color: #DCCFC0;
+  color: #dccfc0;
 }
 
 .secondary-color {
-  color: #A0937D;
+  color: #a0937d;
 }
 
 .third-color {
-  color: #504B38;
+  color: #504b38;
 }
 
 .bg-primary {
-  background-color: #DCCFC0;
+  background-color: #dccfc0;
 }
 
 .bg-secondary {
-  background-color: #A0937D;
+  background-color: #a0937d;
 }
 
 .bg-third {
-  background-color: #504B38;
+  background-color: #504b38;
 }

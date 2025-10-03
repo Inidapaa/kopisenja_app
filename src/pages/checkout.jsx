@@ -1,4 +1,5 @@
 import Navbar from "../components/navbar";
+import Menu1 from "../assets/matcha1.png";
 import Title from "../components/title";
 
 const Checkout = () => {
@@ -10,7 +11,7 @@ const Checkout = () => {
       <div className="h-auto w-screen flex justify-center items-center">
         <div className="md:flex flex-wrap justify-center max-w-[80vw] my-10 gap-x-10">
           <div className="bg-white mb-10 h-25 w-80 border-2 rounded-3xl flex place-content-between items-center">
-            <img src="" alt="" />
+            <img className="h-23 w-23 ml-2" src={Menu1} alt="" />
             <div className="flex flex-col">
               <h3 className="font-bold">Cappucino</h3>
               <p>300ml</p>
@@ -27,7 +28,7 @@ const Checkout = () => {
             </div>
           </div>
           <div className="bg-white mb-10 h-25 w-80 border-2 rounded-3xl flex place-content-between items-center">
-            <img src="" alt="" />
+            <img className="h-23 w-23 ml-2" src={Menu1} alt="" />
             <div className="flex flex-col">
               <h3 className="font-bold">Cappucino</h3>
               <p>300ml</p>
@@ -44,7 +45,7 @@ const Checkout = () => {
             </div>
           </div>
           <div className="bg-white mb-10 h-25 w-80 border-2 rounded-3xl flex place-content-between items-center">
-            <img src="" alt="" />
+            <img className="h-23 w-23 ml-2" src={Menu1} alt="" />
             <div className="flex flex-col">
               <h3 className="font-bold">Cappucino</h3>
               <p>300ml</p>
@@ -61,7 +62,7 @@ const Checkout = () => {
             </div>
           </div>
           <div className="bg-white mb-10 h-25 w-80 border-2 rounded-3xl flex place-content-between items-center">
-            <img src="" alt="" />
+            <img className="h-23 w-23 ml-2" src={Menu1} alt="" />
             <div className="flex flex-col">
               <h3 className="font-bold">Cappucino</h3>
               <p>300ml</p>
@@ -78,7 +79,7 @@ const Checkout = () => {
             </div>
           </div>
           <div className="bg-white mb-10 h-25 w-80 border-2 rounded-3xl flex place-content-between items-center">
-            <img src="" alt="" />
+            <img className="h-23 w-23 ml-2" src={Menu1} alt="" />
             <div className="flex flex-col">
               <h3 className="font-bold">Cappucino</h3>
               <p>300ml</p>
@@ -95,7 +96,7 @@ const Checkout = () => {
             </div>
           </div>
           <div className="bg-white mb-10 h-25 w-80 border-2 rounded-3xl flex place-content-between items-center">
-            <img src="" alt="" />
+            <img className="h-23 w-23 ml-2" src={Menu1} alt="" />
             <div className="flex flex-col">
               <h3 className="font-bold">Cappucino</h3>
               <p>300ml</p>
@@ -131,16 +132,13 @@ const Checkout = () => {
                 </span>
               </div>
             </div>
-            <div className="bg-white shadow-custom rounded-3xl flex justify-between items-center h-30 p-5">
-              <h1 className="text-2xl">Total Pembayaran</h1>
-              <div className="flex flex-col">
-                <p className="text-center text-2xl">36.000</p>
-                <span className="flex flex-col items-end text-gray-400">
-                  <p className="text-[14px]">10.000 x 2</p>
-                  <p className="text-[12px]">8.00 x 2</p>
-                </span>
+            <form className="bg-white shadow-custom rounded-3xl justify-between items-center h-30 p-5">
+              <div className="flex flex-col gap-3">
+                <input type="text" className=" rounded-2xl bg-gray-100 px-4" />
+                <input type="text" className=" rounded-2xl bg-gray-100 px-4" />
               </div>
-            </div>
+              <button>Bayar Sekarang</button>
+            </form>
           </div>
         </div>
       </div>
