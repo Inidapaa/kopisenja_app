@@ -1,6 +1,7 @@
 import Navbar from "../components/navbar";
 import Menu1 from "../assets/matcha1.png";
 import Title from "../components/title";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   return (
@@ -154,9 +155,12 @@ const Checkout = () => {
                   <option value="qris">QRIS</option>
                 </select>
               </div>
-              <button className="bg-green-300 w-50 h-5  md:w-100  md:h-10 hover:bg-green-600 transition flex items-center justify-center rounded-3xl ">
+              <Link
+                to="/qrisPayment"
+                className="bg-green-300 w-50 h-5  md:w-100  md:h-10 hover:bg-green-600 transition flex items-center justify-center rounded-3xl "
+              >
                 Bayar Sekarang
-              </button>
+              </Link>
             </form>
           </div>
         </div>

@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { CircleUserRound, ArrowLeft } from "lucide-react";
 
-const Login = () => {
+const Register = () => {
   return (
-    <div className="flex flex-col gap-5 items-center justify-center w-screen h-screen relative bg-[url('../assets/Background.jpg')] bg-cover bg-center px-4 sm:px-6">
-      <Link to="/" className="absolute top-4 left-4 p-2 md:top-6 md:left-6">
+    <div className="flex items-center justify-center w-screen h-screen relative bg-[url('../assets/Background.jpg')] bg-cover bg-center px-4 sm:px-6">
+      <Link
+        to="/login"
+        className="absolute top-4 left-4 p-2 md:top-6 md:left-6"
+      >
         <ArrowLeft className="w-10 h-10 md:w-8 md:h-8 text-[#3d392c]" />
       </Link>
 
@@ -14,10 +17,20 @@ const Login = () => {
         </div>
 
         <h2 className="text-lg sm:text-xl md:text-2xl font-medium font-Poppins text-gray-800 mt-8 mb-8 text-center">
-          Masuk sebagai admin
+          Daftar sebagai admin
         </h2>
 
         <form className="w-full space-y-4">
+          <input
+            type="text"
+            placeholder="Username"
+            className="w-full px-4 py-2 sm:py-3 md:py-4 rounded-full border border-gray-300 focus:ring-2 focus:ring-gray-400 focus:outline-none text-sm sm:text-base md:text-lg"
+          />
+          <input
+            type="text"
+            placeholder="Username"
+            className="w-full px-4 py-2 sm:py-3 md:py-4 rounded-full border border-gray-300 focus:ring-2 focus:ring-gray-400 focus:outline-none text-sm sm:text-base md:text-lg"
+          />
           <input
             type="text"
             placeholder="Username"
@@ -32,17 +45,12 @@ const Login = () => {
             type="submit"
             className="w-full py-2 sm:py-3 md:py-4 bg-[#504B38] hover:bg-[#3d392c] text-white font-medium rounded-full shadow-md transition duration-200 text-sm sm:text-base md:text-lg"
           >
-            Login
+            Daftar
           </button>
         </form>
-      </div>
-      <div>
-        <Link to="/register" className="underline">
-          Register
-        </Link>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;
