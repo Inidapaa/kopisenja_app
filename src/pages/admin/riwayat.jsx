@@ -1,9 +1,20 @@
-import React from "react";
-import bgImage from "../assets/Background.jpg";
-import { CircleUserRound } from "lucide-react";
-import logo from "../assets/matcha1.png";
+import React, { useEffect } from "react";
+import AdminHeader from "../../components/admin_header.jsx";
+import NavbarAdmin from "../../components/navbar_admin.jsx";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Riwayat = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/me", { withCredentials: true })
+      .then(res => {
+        if (!res.data || !res.data.status) navigate("/login");
+      })
+      .catch(() => navigate("/login"));
+  }, [navigate]);
+
   // contoh dummy data
   const orders = [
     {
@@ -16,25 +27,11 @@ const Riwayat = () => {
 
   return (
     <div className="min-h-screen w-screen bg-white">
-      {/* Header background */}
-      <div
-        className="h-22 w-screen bg-cover bg-top relative"
-        style={{ backgroundImage: `url(${bgImage})` }}
-      >
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="absolute top-1 right-4 w-20 h-20 rounded-full flex items-center justify-center shadow">
-          <CircleUserRound size={60} color="#333" />
-        </div>
-        <div className="absolute top-3 left-4 w-15 h-15 rounded-full flex items-center bg-[#333]">
-          <img src={logo} alt="Logo Kopi Senja" />
-        </div>
-      </div>
-
+      <AdminHeader />
       {/* Judul */}
       <h2 className="mt-5 text-center font-serif font-bold text-3xl text-[#504B38] z-20">
         Riwayat Pesanan
       </h2>
-
       {/* Wadah Pesanan */}
       <div className="p-4">
         {orders.map((order) => (
@@ -64,6 +61,7 @@ const Riwayat = () => {
           </div>
         ))}
       </div>
+      <NavbarAdmin />
     </div>
   );
 };

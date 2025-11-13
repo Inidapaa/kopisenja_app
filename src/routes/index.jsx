@@ -4,9 +4,10 @@ import Checkout from "../pages/checkout.jsx";
 import Menu from "../pages/daftarmenu.jsx";
 import Qris from "../pages/qr.jsx";
 import Login from "../pages/login.jsx";
-import OrderList from "../pages/daftarpesanan.jsx";
-import History from "../pages/riwayat.jsx";
+import OrderList from "../pages/admin/daftarpesanan.jsx";
+import History from "../pages/admin/riwayat.jsx";
 import Register from "../pages/register.jsx";
+import CrudProducts from "../pages/admin/crudproducts.jsx";
 
 export const Router = createBrowserRouter([
   {
@@ -36,12 +37,16 @@ export const Router = createBrowserRouter([
     element: <Register />,
   },
   {
-    path: "/auth/admin/order",
+    path: "/order",
     element: <OrderList />,
   },
   {
-    path: "/auth/admin/history",
+    path: "/history",
     element: <History />,
+  },
+  {
+    path: "/admin/crud",
+    element: <CrudProducts />,
   },
 ]);
 
