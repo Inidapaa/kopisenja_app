@@ -1,4 +1,11 @@
 const CART_KEY = "kopisenja_cart";
+export const CART_UPDATED_EVENT = "cartUpdated";
+
+const emitCartUpdate = () => {
+  if (typeof window !== "undefined" && window.dispatchEvent) {
+    window.dispatchEvent(new Event(CART_UPDATED_EVENT));
+  }
+};
 
 export const getCart = () => {
   try {
@@ -13,6 +20,7 @@ export const getCart = () => {
 export const saveCart = (cart) => {
   try {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    emitCartUpdate();
   } catch (error) {
     console.error("Error saving cart:", error);
   }
@@ -59,4 +67,5 @@ export const updateQuantity = (productId, quantity) => {
 
 export const clearCart = () => {
   localStorage.removeItem(CART_KEY);
+  emitCartUpdate();
 };

@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { ShoppingCart, X, CheckCircle2 } from "lucide-react";
 
-function Toast({ message, onClose, duration = 3000 }) {
+function Toast({
+  message,
+  description = "Item berhasil ditambahkan",
+  icon: IconComponent = ShoppingCart,
+  onClose,
+  duration = 3000,
+}) {
   const [progress, setProgress] = useState(100);
 
   useEffect(() => {
@@ -38,7 +44,7 @@ function Toast({ message, onClose, duration = 3000 }) {
         <div className="relative flex-shrink-0">
           <div className="absolute inset-0 bg-white/20 rounded-full animate-ping opacity-75"></div>
           <div className="relative bg-white/20 rounded-full p-2.5 backdrop-blur-sm">
-            <ShoppingCart size={22} strokeWidth={2.5} className="text-white" />
+            <IconComponent size={22} strokeWidth={2.5} className="text-white" />
           </div>
         </div>
 
@@ -47,7 +53,7 @@ function Toast({ message, onClose, duration = 3000 }) {
           <p className="font-semibold text-base leading-tight">{message}</p>
           <p className="text-xs text-white/90 mt-0.5 flex items-center gap-1">
             <CheckCircle2 size={12} />
-            Item berhasil ditambahkan
+            {description}
           </p>
         </div>
 

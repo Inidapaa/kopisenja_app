@@ -1,15 +1,19 @@
 import Navbar from "../components/navbar";
 import Menu1 from "../assets/matcha1.png";
 import Title from "../components/title";
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getCart, updateQuantity } from "../utils/cartStorage";
+import { useNavigate } from "react-router-dom";
+import { getCart, updateQuantity, clearCart } from "../utils/cartStorage";
+import { createCashOrder } from "../action/orders";
 
 const Checkout = () => {
   const [cart, setCart] = useState([]);
   const [selectedTable, setSelectedTable] = useState("");
   const [customerName, setCustomerName] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const cartData = getCart();
@@ -37,6 +41,58 @@ const Checkout = () => {
       currency: "IDR",
       minimumFractionDigits: 0,
     }).format(amount);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setErrorMessage("");
+
+    if (!customerName.trim() || !selectedTable || !paymentMethod) {
+      setErrorMessage("Lengkapi nama, nomor meja, dan metode pembayaran.");
+      return;
+    }
+
+    if (!cart.length) {
+      setErrorMessage("Keranjang Anda masih kosong.");
+      return;
+    }
+
+    if (paymentMethod === "qris") {
+      navigate("/qrisPayment", {
+        state: {
+          customerName,
+          meja: selectedTable,
+          total: calculateTotal(),
+        },
+      });
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      const payload = {
+        customer_name: customerName.trim(),
+        meja_nomor: selectedTable.trim(),
+        payment_method: paymentMethod,
+        items: cart.map((item) => ({
+          product_id: item.id,
+          quantity: item.quantity,
+          price:
+            typeof item.price === "string"
+              ? parseInt(item.price.replace(/\D/g, ""))
+              : item.price,
+        })),
+      };
+
+      const order = await createCashOrder(payload);
+      clearCart();
+      setCart([]);
+      navigate(`/waiting/${order.id}`, { state: { orderId: order.id } });
+    } catch (error) {
+      setErrorMessage(error?.message || "Gagal memproses pesanan.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -121,7 +177,10 @@ const Checkout = () => {
                 </span>
               </div>
             </div>
-            <form className="bg-white flex flex-col shadow-custom rounded-3xl justify-center items-center h-39 p-5">
+            <form
+              className="bg-white flex flex-col shadow-custom rounded-3xl justify-center items-center h-39 p-5"
+              onSubmit={handleSubmit}
+            >
               <div className="flex flex-col gap-3 mb-2">
                 <input
                   type="text"
@@ -153,12 +212,18 @@ const Checkout = () => {
                   <option value="qris">QRIS</option>
                 </select>
               </div>
-              <Link
-                to="/qrisPayment"
-                className="bg-green-300 w-50 h-5  md:w-100  md:h-10 hover:bg-green-600 transition flex items-center justify-center rounded-3xl "
+              {errorMessage && (
+                <p className="text-red-500 text-sm mb-2 text-center">
+                  {errorMessage}
+                </p>
+              )}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="bg-green-300 w-50 h-5  md:w-100  md:h-10 hover:bg-green-600 transition flex items-center justify-center rounded-3xl disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Bayar Sekarang
-              </Link>
+                {isSubmitting ? "Memproses..." : "Bayar Sekarang"}
+              </button>
             </form>
           </div>
         </div>

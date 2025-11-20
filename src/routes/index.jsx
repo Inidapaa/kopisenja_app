@@ -9,6 +9,7 @@ import History from "../pages/admin/riwayat.jsx";
 import Register from "../pages/register.jsx";
 import CrudProducts from "../pages/admin/crudproducts.jsx";
 import Layout from "../components/Layout.jsx";
+import WaitingPage from "../pages/waiting.jsx";
 
 export const Router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const Router = createBrowserRouter([
       {
         path: "/qrisPayment",
         element: <Qris />,
+      },
+      {
+        path: "/waiting/:orderId",
+        element: <WaitingPage />,
       },
       {
         path: "/login",
