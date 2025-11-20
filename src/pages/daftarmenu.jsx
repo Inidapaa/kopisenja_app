@@ -4,19 +4,24 @@ import { House, SquareMenu, ShoppingCart, Star, Plus } from "lucide-react";
 import matchaImg from "../assets/matcha1.png";
 import Navbar from "../components/navbar.jsx";
 import React, { useEffect, useState, useMemo } from "react";
+import { addToCart } from "../utils/cartStorage";
+import { useNotification } from "../hooks/useNotification";
+import { useCartCount } from "../hooks/useCartCount";
 
 const Menu = () => {
   const [produk, setProduk] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const { showNotification } = useNotification();
+  const { updateCartCount } = useCartCount();
 
   useEffect(() => {
     getAllMenu()
-      .then(data => {
+      .then((data) => {
         setProduk(data || []);
         setLoading(false);
       })
-      .catch(err => {
+      .catch((err) => {
         setError("Gagal fetch ke backend: " + err.message);
         setLoading(false);
       });
@@ -25,8 +30,8 @@ const Menu = () => {
   const { minuman, makanan } = useMemo(() => {
     const lower = (s) => (typeof s === "string" ? s.toLowerCase() : "");
     return {
-      minuman: (produk || []).filter(p => lower(p.category) === "minuman"),
-      makanan: (produk || []).filter(p => lower(p.category) === "makanan"),
+      minuman: (produk || []).filter((p) => lower(p.category) === "minuman"),
+      makanan: (produk || []).filter((p) => lower(p.category) === "makanan"),
     };
   }, [produk]);
 
@@ -52,11 +57,20 @@ const Menu = () => {
             <div className="space-y-8">
               {/* Minuman */}
               <div>
-                <h2 className="font-bold text-black font-serif text-2xl mt-6 mb-3">Minuman</h2>
+                <h2 className="font-bold text-black font-serif text-2xl mt-6 mb-3">
+                  Minuman
+                </h2>
                 <div className="space-y-4">
-                  {minuman.length === 0 && <div className="text-sm text-gray-600">Belum ada minuman</div>}
+                  {minuman.length === 0 && (
+                    <div className="text-sm text-gray-600">
+                      Belum ada minuman
+                    </div>
+                  )}
                   {minuman.map((item) => (
-                    <div key={item.id} className="flex items-center bg-white rounded-3xl shadow-md p-3">
+                    <div
+                      key={item.id}
+                      className="flex items-center bg-white rounded-3xl shadow-md p-3"
+                    >
                       <img
                         src={item.image || matchaImg}
                         alt={item.name}
@@ -64,10 +78,23 @@ const Menu = () => {
                       />
                       <div className="flex-1 px-3">
                         <h3 className="font-bold text-black">{item.name}</h3>
-                        <p className="text-sm text-gray-600">{item.description}</p>
-                        <p className="text-black">Rp {Number(item.price)?.toLocaleString()}</p>
+                        <p className="text-sm text-gray-600">
+                          {item.description}
+                        </p>
+                        <p className="text-black">
+                          Rp {Number(item.price)?.toLocaleString()}
+                        </p>
                       </div>
-                      <button className="text-red-500">
+                      <button
+                        onClick={() => {
+                          addToCart(item);
+                          updateCartCount();
+                          showNotification(
+                            `${item.name} ditambahkan ke keranjang`
+                          );
+                        }}
+                        className="text-red-500 hover:text-red-700 transition"
+                      >
                         <Plus size={28} />
                       </button>
                     </div>
@@ -77,11 +104,20 @@ const Menu = () => {
 
               {/* Makanan */}
               <div>
-                <h2 className="font-bold text-black font-serif text-2xl mt-6 mb-3">Makanan</h2>
+                <h2 className="font-bold text-black font-serif text-2xl mt-6 mb-3">
+                  Makanan
+                </h2>
                 <div className="space-y-4">
-                  {makanan.length === 0 && <div className="text-sm text-gray-600">Belum ada makanan</div>}
+                  {makanan.length === 0 && (
+                    <div className="text-sm text-gray-600">
+                      Belum ada makanan
+                    </div>
+                  )}
                   {makanan.map((item) => (
-                    <div key={item.id} className="flex items-center bg-white rounded-3xl shadow-md p-3">
+                    <div
+                      key={item.id}
+                      className="flex items-center bg-white rounded-3xl shadow-md p-3"
+                    >
                       <img
                         src={item.image || matchaImg}
                         alt={item.name}
@@ -89,10 +125,23 @@ const Menu = () => {
                       />
                       <div className="flex-1 px-3">
                         <h3 className="font-bold text-black">{item.name}</h3>
-                        <p className="text-sm text-gray-600">{item.description}</p>
-                        <p className="text-black">Rp {Number(item.price)?.toLocaleString()}</p>
+                        <p className="text-sm text-gray-600">
+                          {item.description}
+                        </p>
+                        <p className="text-black">
+                          Rp {Number(item.price)?.toLocaleString()}
+                        </p>
                       </div>
-                      <button className="text-red-500">
+                      <button
+                        onClick={() => {
+                          addToCart(item);
+                          updateCartCount();
+                          showNotification(
+                            `${item.name} ditambahkan ke keranjang`
+                          );
+                        }}
+                        className="text-red-500 hover:text-red-700 transition"
+                      >
                         <Plus size={28} />
                       </button>
                     </div>

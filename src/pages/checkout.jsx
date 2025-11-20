@@ -2,117 +2,97 @@ import Navbar from "../components/navbar";
 import Menu1 from "../assets/matcha1.png";
 import Title from "../components/title";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { getCart, updateQuantity } from "../utils/cartStorage";
 
 const Checkout = () => {
+  const [cart, setCart] = useState([]);
+  const [selectedTable, setSelectedTable] = useState("");
+  const [customerName, setCustomerName] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("");
+
+  useEffect(() => {
+    const cartData = getCart();
+    setCart(cartData);
+  }, []);
+
+  const handleQuantityChange = (productId, newQuantity) => {
+    const updatedCart = updateQuantity(productId, newQuantity);
+    setCart(updatedCart);
+  };
+
+  const calculateTotal = () => {
+    return cart.reduce((total, item) => {
+      const price =
+        typeof item.price === "string"
+          ? parseInt(item.price.replace(/\D/g, ""))
+          : item.price;
+      return total + price * item.quantity;
+    }, 0);
+  };
+
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    }).format(amount);
+  };
+
   return (
     <>
       <Navbar />
       <Title />
-      {/* ==========Daftar Pesanan========== */}
       <div className="h-auto w-screen flex justify-center items-center">
         <div className="md:flex flex-wrap justify-center max-w-[80vw] my-10 gap-x-10">
-          <div className="bg-white mb-10 h-25 w-80 border-2 rounded-3xl flex place-content-between items-center">
-            <img className="h-23 w-23 ml-2" src={Menu1} alt="" />
-            <div className="flex flex-col">
-              <h3 className="font-bold">Cappucino</h3>
-              <p>300ml</p>
-              <p className="font-bold text-[0.9rem]">Rp 10.000</p>
-            </div>
-            <div className="flex h-20 w-7 mr-2 rounded-3xl flex-col bg-secondary justify-center items-center text-white">
-              <button type="" className="cursor-pointer">
-                +
-              </button>
-              <p className="text-[0.8rem]">2</p>
-              <button type="" className="cursor-pointer">
-                -
-              </button>
-            </div>
-          </div>
-          <div className="bg-white mb-10 h-25 w-80 border-2 rounded-3xl flex place-content-between items-center">
-            <img className="h-23 w-23 ml-2" src={Menu1} alt="" />
-            <div className="flex flex-col">
-              <h3 className="font-bold">Cappucino</h3>
-              <p>300ml</p>
-              <p className="font-bold text-[0.9rem]">Rp 10.000</p>
-            </div>
-            <div className="flex h-20 w-7 mr-2 rounded-3xl flex-col bg-secondary justify-center items-center text-white">
-              <button type="" className="cursor-pointer">
-                +
-              </button>
-              <p className="text-[0.8rem]">2</p>
-              <button type="" className="cursor-pointer">
-                -
-              </button>
-            </div>
-          </div>
-          <div className="bg-white mb-10 h-25 w-80 border-2 rounded-3xl flex place-content-between items-center">
-            <img className="h-23 w-23 ml-2" src={Menu1} alt="" />
-            <div className="flex flex-col">
-              <h3 className="font-bold">Cappucino</h3>
-              <p>300ml</p>
-              <p className="font-bold text-[0.9rem]">Rp 10.000</p>
-            </div>
-            <div className="flex h-20 w-7 mr-2 rounded-3xl flex-col bg-secondary justify-center items-center text-white">
-              <button type="" className="cursor-pointer">
-                +
-              </button>
-              <p className="text-[0.8rem]">2</p>
-              <button type="" className="cursor-pointer">
-                -
-              </button>
-            </div>
-          </div>
-          <div className="bg-white mb-10 h-25 w-80 border-2 rounded-3xl flex place-content-between items-center">
-            <img className="h-23 w-23 ml-2" src={Menu1} alt="" />
-            <div className="flex flex-col">
-              <h3 className="font-bold">Cappucino</h3>
-              <p>300ml</p>
-              <p className="font-bold text-[0.9rem]">Rp 10.000</p>
-            </div>
-            <div className="flex h-20 w-7 mr-2 rounded-3xl flex-col bg-secondary justify-center items-center text-white">
-              <button type="" className="cursor-pointer">
-                +
-              </button>
-              <p className="text-[0.8rem]">2</p>
-              <button type="" className="cursor-pointer">
-                -
-              </button>
-            </div>
-          </div>
-          <div className="bg-white mb-10 h-25 w-80 border-2 rounded-3xl flex place-content-between items-center">
-            <img className="h-23 w-23 ml-2" src={Menu1} alt="" />
-            <div className="flex flex-col">
-              <h3 className="font-bold">Cappucino</h3>
-              <p>300ml</p>
-              <p className="font-bold text-[0.9rem]">Rp 10.000</p>
-            </div>
-            <div className="flex h-20 w-7 mr-2 rounded-3xl flex-col bg-secondary justify-center items-center text-white">
-              <button type="" className="cursor-pointer">
-                +
-              </button>
-              <p className="text-[0.8rem]">2</p>
-              <button type="" className="cursor-pointer">
-                -
-              </button>
-            </div>
-          </div>
-          <div className="bg-white mb-10 h-25 w-80 border-2 rounded-3xl flex place-content-between items-center">
-            <img className="h-23 w-23 ml-2" src={Menu1} alt="" />
-            <div className="flex flex-col">
-              <h3 className="font-bold">Cappucino</h3>
-              <p>300ml</p>
-              <p className="font-bold text-[0.9rem]">Rp 10.000</p>
-            </div>
-            <div className="flex h-20 w-7 mr-2 rounded-3xl flex-col bg-secondary justify-center items-center text-white">
-              <button type="" className="cursor-pointer">
-                +
-              </button>
-              <p className="text-[0.8rem]">2</p>
-              <button type="" className="cursor-pointer">
-                -
-              </button>
-            </div>
-          </div>
+          {cart.length > 0 ? (
+            cart.map((item) => (
+              <div
+                key={item.id}
+                className="bg-white mb-10 h-25 w-80 border-2 rounded-3xl flex place-content-between items-center"
+              >
+                <img
+                  className="h-23 w-23 ml-2"
+                  src={item.image || Menu1}
+                  alt={item.name}
+                />
+                <div className="flex flex-col">
+                  <h3 className="font-bold">{item.name}</h3>
+                  <p>{item.size || "300ml"}</p>
+                  <p className="font-bold text-[0.9rem]">
+                    {typeof item.price === "string"
+                      ? item.price
+                      : `Rp ${item.price.toLocaleString("id-ID")}`}
+                  </p>
+                </div>
+                <div className="flex h-20 w-7 mr-2 rounded-3xl flex-col bg-secondary justify-center items-center text-white">
+                  <button
+                    type="button"
+                    className="cursor-pointer"
+                    onClick={() =>
+                      handleQuantityChange(item.id, item.quantity + 1)
+                    }
+                  >
+                    +
+                  </button>
+                  <p className="text-[0.8rem]">{item.quantity}</p>
+                  <button
+                    type="button"
+                    className="cursor-pointer"
+                    onClick={() =>
+                      handleQuantityChange(item.id, item.quantity - 1)
+                    }
+                  >
+                    -
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="text-center text-gray-500 py-10">
+              Keranjang Anda kosong
+            </p>
+          )}
         </div>
       </div>
 
@@ -126,10 +106,18 @@ const Checkout = () => {
             <div className="bg-white shadow-custom rounded-3xl flex justify-between items-center h-30 p-5">
               <h1 className="text-2xl">Total Pembayaran</h1>
               <div className="flex flex-col">
-                <p className="text-center text-2xl">36.000</p>
+                <p className="text-center text-2xl">
+                  {formatCurrency(calculateTotal())}
+                </p>
                 <span className="flex flex-col items-end text-gray-400">
-                  <p className="text-[14px]">10.000 x 2</p>
-                  <p className="text-[12px]">8.00 x 2</p>
+                  {cart.slice(0, 2).map((item) => (
+                    <p key={item.id} className="text-[14px]">
+                      {typeof item.price === "string"
+                        ? item.price.replace("Rp ", "")
+                        : item.price.toLocaleString("id-ID")}{" "}
+                      x {item.quantity}
+                    </p>
+                  ))}
                 </span>
               </div>
             </div>
@@ -137,18 +125,28 @@ const Checkout = () => {
               <div className="flex flex-col gap-3 mb-2">
                 <input
                   type="text"
-                  className="  rounded-2xl bg-gray-100 px-4"
+                  className="rounded-2xl bg-gray-100 px-4"
                   placeholder="Nama Pemesan"
-                />
-                <input
-                  type="text"
-                  className=" rounded-2xl bg-gray-100 px-4"
-                  placeholder="Nomor Meja"
+                  value={customerName}
+                  onChange={(e) => setCustomerName(e.target.value)}
                 />
                 <select
-                  name="payment"
-                  id=""
                   className="rounded-2xl bg-gray-100 px-4 text-sm py-1 md:w-250"
+                  value={selectedTable}
+                  onChange={(e) => setSelectedTable(e.target.value)}
+                >
+                  <option value="">Pilih Nomor Meja</option>
+                  <option value="1">Meja 1</option>
+                  <option value="2">Meja 2</option>
+                  <option value="3">Meja 3</option>
+                  <option value="4">Meja 4</option>
+                  <option value="5">Meja 5</option>
+                </select>
+                <select
+                  name="payment"
+                  className="rounded-2xl bg-gray-100 px-4 text-sm py-1 md:w-250"
+                  value={paymentMethod}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
                 >
                   <option value="">Pilih Metode Pembayaran</option>
                   <option value="tunai">Tunai</option>

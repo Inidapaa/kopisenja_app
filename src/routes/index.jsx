@@ -8,45 +8,49 @@ import OrderList from "../pages/admin/daftarpesanan.jsx";
 import History from "../pages/admin/riwayat.jsx";
 import Register from "../pages/register.jsx";
 import CrudProducts from "../pages/admin/crudproducts.jsx";
+import Layout from "../components/Layout.jsx";
 
 export const Router = createBrowserRouter([
   {
-    path: "/",
-    element: <Home />,
-  },
-
-  {
-    path: "/menu",
-    element: <Menu />,
-  },
-
-  {
-    path: "/checkout",
-    element: <Checkout />,
-  },
-  {
-    path: "/qrisPayment",
-    element: <Qris />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/order",
-    element: <OrderList />,
-  },
-  {
-    path: "/history",
-    element: <History />,
-  },
-  {
-    path: "/admin/crud",
-    element: <CrudProducts />,
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/menu",
+        element: <Menu />,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />,
+      },
+      {
+        path: "/qrisPayment",
+        element: <Qris />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/order",
+        element: <OrderList />,
+      },
+      {
+        path: "/history",
+        element: <History />,
+      },
+      {
+        path: "/admin/crud",
+        element: <CrudProducts />,
+      },
+    ],
   },
 ]);
 
